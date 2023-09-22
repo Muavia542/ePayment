@@ -1,0 +1,28 @@
+.notification {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f44336; /* Red background color, you can change it */
+    color: white;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+/* button  */
+/* Add this CSS to your component's styles */
+.container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100vh; /* Adjust to center vertically within the viewport */
+  }
+  
+  /* Adjust the button styles as needed */
+  button {
+      width: 500px;
+  }
+
+ 
+  

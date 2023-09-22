@@ -52,4 +52,5 @@ export class ApplePayComponent {
       alert('Apple Pay is not available on this device.');
     }
   }
+
 }
