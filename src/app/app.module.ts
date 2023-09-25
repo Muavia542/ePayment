@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -23,6 +22,8 @@ import { CartComponent } from './cart/cart.component';
 
 import { GooglePayButtonModule } from '@google-pay/button-angular';
 import { ApplePayComponent } from './apple-pay/apple-pay.component';
+import { SplitGooglePayComponent } from './split-google-pay/split-google-pay.component';
+import { StripePaymentComponent } from './stripe-payment/stripe-payment.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -30,6 +31,8 @@ import { ApplePayComponent } from './apple-pay/apple-pay.component';
     AppComponent,
     CartComponent,
     ApplePayComponent,
+    SplitGooglePayComponent,
+    StripePaymentComponent,
   ],
   imports: [
     AppRoutingModule,

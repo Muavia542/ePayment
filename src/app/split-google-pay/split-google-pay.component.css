@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100vh; 
+}
+
+.buttons {
+    margin: 20px auto;
+    width: 500px;
+}

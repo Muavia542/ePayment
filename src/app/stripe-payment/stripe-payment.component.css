@@ -1,0 +1,33 @@
+/* Center the container vertically and horizontally */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust this if needed to control the vertical alignment */
+  }
+  
+  /* Style the button */
+  .col-md-4 {
+    text-align: center; /* Center the button within the column */
+  }
+  
+  /* Add spacing to the bottom paragraph */
+  p {
+    margin-top: 20px;
+    text-align: center;
+  }
+  button {
+    margin: 20px auto;
+    width: 500px;
+  
+    > * {
+      width: 100%;
+      margin: 0.2rem 0;
+    }
+  }
+  
+  a {
+    color: #000000;
+  }
+  
