@@ -1,4 +1,11 @@
-<div class="container">
-    <button class="button" mat-raised-button color="primary" (click)="splitPayment()">Split Payment</button>
-</div>
-    
+<h1 style="text-align: center;">Google Split Pay</h1>
+
+<div class="buttons">
+    <google-pay-button
+      environment="TEST"
+      buttonType="buy"
+      buttonSizeMode="fill"
+      [paymentRequest]="paymentRequest"
+      (loadpaymentdata)="onLoadPaymentData($event)"
+    ></google-pay-button>
+  </div>

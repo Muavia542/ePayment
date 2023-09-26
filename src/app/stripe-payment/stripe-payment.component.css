@@ -4,7 +4,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Adjust this if needed to control the vertical alignment */
   }
   
   /* Style the button */
