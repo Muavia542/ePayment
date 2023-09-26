@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PaymentService } from './payment.service';
 
 @Component({
   selector: 'app-split-google-pay',
@@ -12,11 +13,13 @@ export class SplitGooglePayComponent implements OnInit {
   private doctorPercentage = 0.3; // 30%
   private hospitalPercentage = 0.3; // 30%
 
-  // Total appointments and appointments for each partner
-  private totalAppointments = 0;
-  private primaryAppointments = 0;
-  private doctorAppointments = 0;
-  private hospitalAppointments = 0;
+  // Price per appointment
+  private pricePerAppointment = 40; // Replace with your actual price
+
+  // Payments for each partner
+  private primaryPayment!: number;
+  private doctorPayment!: number;
+  private hospitalPayment!: number;
 
   paymentRequest: google.payments.api.PaymentDataRequest = {
     apiVersion: 2,
@@ -50,28 +53,38 @@ export class SplitGooglePayComponent implements OnInit {
     }
   };
 
-  constructor() {}
+  constructor(private PaymentService: PaymentService) {}
 
   ngOnInit(): void {
-    // Calculate the number of appointments for each partner based on percentages
-    this.totalAppointments = this.totalAppointments;
-    this.primaryAppointments = Math.floor(this.totalAppointments * this.primaryPercentage);
-    this.doctorAppointments = Math.floor(this.totalAppointments * this.doctorPercentage);
-    this.hospitalAppointments = Math.floor(this.totalAppointments * this.hospitalPercentage);
+    // Calculate payments for each partner based on percentages and price per appointment
+    this.primaryPayment = this.pricePerAppointment * this.primaryPercentage;
+    this.doctorPayment = this.pricePerAppointment * this.doctorPercentage;
+    this.hospitalPayment = this.pricePerAppointment * this.hospitalPercentage;
 
-    // Calculate the total price based on the number of appointments (you need to define a price per appointment)
-    const pricePerAppointment = 40;
-    this.paymentRequest.transactionInfo.totalPrice = (this.totalAppointments * pricePerAppointment).toFixed(2);
+    // Initialize the total price based on the price for the primary partner
+    this.paymentRequest.transactionInfo.totalPrice = this.primaryPayment.toFixed(2);
   }
 
   async onLoadPaymentData(event: Event) {
     const paymentData = (event as CustomEvent<google.payments.api.PaymentData>).detail;
-    // Handle payment data here.
-    // You can also update the totalPrice in this method if needed.
-
-    // Example: this.paymentRequest.transactionInfo.totalPrice = updatedTotal.toFixed(2);
-
-    // After handling payment data, you can navigate or perform further actions.
-    // this.router.navigate(['/confirm']);
+    
+    // Process payment data
+    const paymentResult = await PaymentService.processPayment(paymentData);
+  
+    if (paymentResult.success) {
+      // Payment was successful, distribute funds to partners
+      const primarySuccess = await PaymentService.transferFundsToPrimary(this.primaryPayment);
+      const doctorSuccess = await PaymentService.transferFundsToDoctor(this.doctorPayment);
+      const hospitalSuccess = await PaymentService.transferFundsToHospital(this.hospitalPayment);
+  
+      if (primarySuccess && doctorSuccess && hospitalSuccess) {
+        // All transfers were successful
+        // You can update the totalPrice or navigate to a confirmation page here
+      } else {
+        // Handle errors in fund transfers
+      }
+    } else {
+      // Handle payment processing errors
+    }
   }
 }

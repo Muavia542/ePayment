@@ -24,6 +24,7 @@ import { GooglePayButtonModule } from '@google-pay/button-angular';
 import { ApplePayComponent } from './apple-pay/apple-pay.component';
 import { SplitGooglePayComponent } from './split-google-pay/split-google-pay.component';
 import { StripePaymentComponent } from './stripe-payment/stripe-payment.component';
+import { StripeSplitPaymentComponent } from './stripe-split-payment/stripe-split-payment.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -33,6 +34,7 @@ import { StripePaymentComponent } from './stripe-payment/stripe-payment.componen
     ApplePayComponent,
     SplitGooglePayComponent,
     StripePaymentComponent,
+    StripeSplitPaymentComponent,
   ],
   imports: [
     AppRoutingModule,

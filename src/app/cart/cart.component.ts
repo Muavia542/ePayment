@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
     ],
     merchantInfo: {
       merchantId: '17613812255336763067',
-      merchantName: 'Demo Only (you will not be charged)'
+      merchantName: 'AMEER MUAVIA'
     },
     transactionInfo: {
       totalPriceStatus: 'FINAL',

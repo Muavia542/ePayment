@@ -2,10 +2,11 @@
 
 <div class="buttons">
     <google-pay-button
-      environment="TEST"
+      environment="PRODUCTION"
       buttonType="buy"
       buttonSizeMode="fill"
       [paymentRequest]="paymentRequest"
       (loadpaymentdata)="onLoadPaymentData($event)"
-    ></google-pay-button>
-  </div>
+      ></google-pay-button>
+    </div>
+    <!-- environment="TEST" -->
